@@ -3,10 +3,10 @@
 # Docker Hub: https://registry.hub.docker.com/u/conetix/wordpress-with-wp-cli/
 # Github Repo: https://github.com/conetix/docker-wordpress-wp-cli
 
-FROM wordpress:latest
+FROM appcontainers/wordpress:debian
 
 # Add sudo in order to run wp-cli as the www-data user 
-RUN apt-get update && apt-get install -y sudo less
+RUN apt-get update && apt-get install -y curl sudo less
 
 # Add WP-CLI 
 RUN curl -o /bin/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
