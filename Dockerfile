@@ -6,12 +6,12 @@
 FROM appcontainers/wordpress:debian
 
 # Add sudo in order to run wp-cli as the www-data user 
-RUN apt-get update && apt-get install -y curl sudo less
+RUN apt-get update && apt-get install -y curl less
 
-# Add WP-CLI 
-RUN curl -o /bin/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-COPY wp-su.sh /bin/wp
-RUN chmod +x /bin/wp-cli.phar
+
+# Download WordPress CLI
+RUN curl -L "https://github.com/wp-cli/wp-cli/releases/download/v0.23.0/wp-cli-0.23.0.phar" > /usr/bin/wp && \
+    chmod +x /usr/bin/wp
 
 # Cleanup
 RUN apt-get clean
